@@ -28,7 +28,7 @@ hist(totalSteps$steps,main="Total Number of Steps", xlab="Total number of steps 
 The total number of steps taken per day was calculated by using aggregate function. We report the mean and the median also. 
 
 ```r
-mean(totalSteps$steps)
+mean(totalSteps$steps) 
 ```
 
 ```
@@ -44,7 +44,7 @@ median(totalSteps$steps)
 ```
 
 * The **mean** total number of steps taken per day is 
-    1.07662 &times; 10<sup>4</sup> steps.
+    1.0766189 &times; 10<sup>4</sup> steps.
 * The **median** total number of steps taken per day is 
     10765 steps.
     
@@ -91,7 +91,8 @@ Total 2304 rows are missing.
 
 * Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 
-: I used a strategy for filing in all of the missing values with the mean for that 5-minute interval. First of all, I made a function **"interval2steps"** to get the mean steps for particular 5-minute interval. 
+Fill in all of the missing values with the mean for that 5-minute interval. 
+Function **"interval2steps"** to get the mean steps for particular 5-minute interval. 
 
 ```r
 interval2steps<-function(interval){
@@ -150,7 +151,7 @@ median(totalSteps2$steps)
 
 * Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
-: The **mean** value is the **same** as the value before imputing missing data because we put the mean value for that particular 5-min interval. The median value shows **a little** difference : but it depends on **where the missing values are**.
+The **mean** value is the **same** as the value before imputing missing data because we put the mean value for that particular 5-min interval. The median value shows **a little** difference : but it depends on **where the missing values are**.
 
 Are there differences in activity patterns between weekdays and weekends?
 ---------------------------------------------------------------------------
@@ -165,7 +166,7 @@ activityFilled$day=factor(activityFilled$day,levels=c("weekday","weekend"))
 ```
 
 
-* Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was creating using simulated data:
+* Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
 
 ```r
 stepsInterval2=aggregate(steps~interval+day,activityFilled,mean)
@@ -174,3 +175,5 @@ xyplot(steps~interval|factor(day),data=stepsInterval2,aspect=1/2,type="l")
 ```
 
 ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+
+* Activity on the weekends tends to be more spread out over the day compared to the weekdays
